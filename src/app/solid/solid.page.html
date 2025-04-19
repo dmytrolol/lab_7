@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true">
+  <h1>Автосалон</h1>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Запропонувати ТЗ </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="openAddForm()">Додати</ion-button>
+      <app-add-vehicle
+        *ngIf="showAddVehicleModal"
+        (vehicleAdd)="addVehicle($event)"
+      >
+      </app-add-vehicle>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let vehicle of vehicles; let i = index" class="course-card">
+    <ion-card-header>
+      <ion-card-title
+        >{{ vehicle.getBrand() }} {{ vehicle.getModel() }} {{ vehicle.getYear()
+        }}</ion-card-title
+      >
+      <ion-card-subtitle>{{ vehicle.getType() }}</ion-card-subtitle>
+      <ion-card-title>{{ vehicle.getPrice() }}$</ion-card-title>
+    </ion-card-header>
+    <ion-button>Купити</ion-button>
+
+    <div>
+      <ion-button (click)="openEditForm(i)">Редагувати</ion-button>
+      <ion-button (click)="removeVehicle(vehicle)">Видалити</ion-button>
+    </div>
+
+    <app-edit-vehicle
+      *ngIf="showEditVehicleModal && editIndex === i"
+      [vehicle]="vehicle"
+      (vehicleEdit)="editVehicle($event, i)"
+    >
+    </app-edit-vehicle>
+  </ion-card>
+</ion-content>

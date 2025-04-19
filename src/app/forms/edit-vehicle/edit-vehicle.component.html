@@ -1,0 +1,84 @@
+<ion-title>Редагування</ion-title>
+
+<ion-form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">ID</ion-label>
+      <ion-input type="text" [value]="vehicle.getID()" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Тип</ion-label>
+      <ion-input type="text" [value]="vehicle.getType()" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Марка</ion-label>
+      <ion-input type="text" formControlName="brand"></ion-input>
+    </ion-item>
+    <ion-text
+      *ngIf="
+        vehicleForm.get('brand')?.invalid && vehicleForm.get('brand')?.touched
+      "
+    >
+      <small *ngIf="vehicleForm.get('brand')?.hasError('required')"
+        >Марка є обов'язковою.</small
+      >
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Модель</ion-label>
+      <ion-input type="text" formControlName="model"></ion-input>
+    </ion-item>
+    <ion-text
+      *ngIf="
+        vehicleForm.get('model')?.invalid && vehicleForm.get('model')?.touched
+      "
+    >
+      <small *ngIf="vehicleForm.get('model')?.hasError('required')"
+        >Модель є обов'язковою.</small
+      >
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Рік випуску</ion-label>
+      <ion-input type="number" formControlName="year"></ion-input>
+    </ion-item>
+    <ion-text
+      *ngIf="
+        vehicleForm.get('year')?.invalid && vehicleForm.get('year')?.touched
+      "
+    >
+      <small *ngIf="vehicleForm.get('year')?.hasError('required')"
+        >Рік є обов'язковим.</small
+      >
+      <small *ngIf="vehicleForm.get('year')?.hasError('min')"
+        >Рік повинен бути не раніше 1900.</small
+      >
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Ціна</ion-label>
+      <ion-input type="number" formControlName="price"></ion-input>
+    </ion-item>
+    <ion-text
+      *ngIf="
+        vehicleForm.get('price')?.invalid && vehicleForm.get('price')?.touched
+      "
+    >
+      <small *ngIf="vehicleForm.get('price')?.hasError('required')"
+        >Ціна є обов'язковою.</small
+      >
+      <small *ngIf="vehicleForm.get('price')?.hasError('min')"
+        >Ціна має бути більшою за 0.</small
+      >
+    </ion-text>
+
+    <ion-button
+      type="submit"
+      (click)="onSubmit()"
+      [disabled]="vehicleForm.invalid"
+      >Зберегти зміни</ion-button
+    >
+  </ion-list>
+</ion-form>
