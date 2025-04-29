@@ -2,7 +2,7 @@ import { Vehicle } from './vehicle';
 
 export class Truck extends Vehicle {
   constructor(
-    id: number,
+    id: string,
     price: number,
     brand: string,
     model: string,

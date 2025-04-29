@@ -4,7 +4,7 @@ describe('Motorcycle', () => {
   let motorcycle: Motorcycle;
 
   beforeEach(() => {
-    motorcycle = new Motorcycle(2, 15000, 'Yamaha', 'MT-07', 2021);
+    motorcycle = new Motorcycle('2', 15000, 'Yamaha', 'MT-07', 2021);
   });
 
   it('should create an instance', () => {
@@ -17,7 +17,7 @@ describe('Motorcycle', () => {
   });
 
   it('should return correct ID', () => {
-    expect(motorcycle.getID()).toBe(2);
+    expect(motorcycle.getID()).toBe('2');
   });
 
   it('should return correct brand', () => {

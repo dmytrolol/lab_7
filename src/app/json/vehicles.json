@@ -1,0 +1,148 @@
+{
+  "vehicles": {
+    "vehicle1": {
+      "type": "Car",
+      "id": 1,
+      "price": 25000,
+      "brand": "Toyota",
+      "model": "Camry",
+      "year": 2022
+    },
+    "vehicle2": {
+      "type": "Truck",
+      "id": 2,
+      "price": 75000,
+      "brand": "Volvo",
+      "model": "FH16",
+      "year": 2023
+    },
+    "vehicle3": {
+      "type": "Motorcycle",
+      "id": 3,
+      "price": 15000,
+      "brand": "Yamaha",
+      "model": "MT-07",
+      "year": 2021
+    },
+    "vehicle4": {
+      "type": "Boat",
+      "id": 4,
+      "price": 50000,
+      "brand": "Yamaha",
+      "model": "212X",
+      "year": 2020
+    },
+    "vehicle5": {
+      "type": "Car",
+      "id": 5,
+      "price": 35000,
+      "brand": "Honda",
+      "model": "Civic",
+      "year": 2022
+    },
+    "vehicle6": {
+      "type": "Truck",
+      "id": 6,
+      "price": 95000,
+      "brand": "Mercedes-Benz",
+      "model": "Actros",
+      "year": 2023
+    },
+    "vehicle7": {
+      "type": "Motorcycle",
+      "id": 7,
+      "price": 12000,
+      "brand": "Harley-Davidson",
+      "model": "Sportster",
+      "year": 2020
+    },
+    "vehicle8": {
+      "type": "Boat",
+      "id": 8,
+      "price": 60000,
+      "brand": "Sea Ray",
+      "model": "SLX 400",
+      "year": 2021
+    },
+    "vehicle9": {
+      "type": "Car",
+      "id": 9,
+      "price": 30000,
+      "brand": "BMW",
+      "model": "3 Series",
+      "year": 2022
+    },
+    "vehicle10": {
+      "type": "Truck",
+      "id": 10,
+      "price": 80000,
+      "brand": "Scania",
+      "model": "R-Series",
+      "year": 2023
+    },
+    "vehicle11": {
+      "type": "Motorcycle",
+      "id": 11,
+      "price": 18000,
+      "brand": "Kawasaki",
+      "model": "Ninja ZX-10R",
+      "year": 2021
+    },
+    "vehicle12": {
+      "type": "Boat",
+      "id": 12,
+      "price": 65000,
+      "brand": "Bayliner",
+      "model": "VR6",
+      "year": 2020
+    },
+    "vehicle13": {
+      "type": "Car",
+      "id": 13,
+      "price": 22000,
+      "brand": "Ford",
+      "model": "Focus",
+      "year": 2021
+    },
+    "vehicle14": {
+      "type": "Truck",
+      "id": 14,
+      "price": 70000,
+      "brand": "MAN",
+      "model": "TGX",
+      "year": 2022
+    },
+    "vehicle15": {
+      "type": "Motorcycle",
+      "id": 15,
+      "price": 14000,
+      "brand": "Suzuki",
+      "model": "V-Strom 650",
+      "year": 2020
+    },
+    "vehicle16": {
+      "type": "Boat",
+      "id": 16,
+      "price": 75000,
+      "brand": "Chaparral",
+      "model": "287 SSX",
+      "year": 2021
+    },
+    "vehicle17": {
+      "type": "Car",
+      "id": 17,
+      "price": 26000,
+      "brand": "Nissan",
+      "model": "Altima",
+      "year": 2022
+    },
+    "vehicle18": {
+      "type": "Truck",
+      "id": 18,
+      "price": 72000,
+      "brand": "Iveco",
+      "model": "Stralis",
+      "year": 2023
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Авторизація</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-text
+        *ngIf="authForm.get('email')?.invalid && authForm.get('email')?.touched"
+      >
+        <small *ngIf="authForm.get('email')?.hasError('required')"
+          >Email є обов'язковим.</small
+        >
+        <small *ngIf="authForm.get('email')?.hasError('email')"
+          >Email некоректний.</small
+        >
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="floating">Пароль</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-text
+        *ngIf="authForm.get('password')?.invalid && authForm.get('password')?.touched"
+      >
+        <small *ngIf="authForm.get('password')?.hasError('required')"
+          >Пароль є обов'язковим.</small
+        >
+        <small *ngIf="authForm.get('password')?.hasError('minlength')"
+          >Пароль має бути мінімум 6 символів.</small
+        >
+      </ion-text>
+
+      <ion-button
+        expand="block"
+        (click)="onSubmit()"
+        [disabled]="authForm.invalid"
+      >
+        Увійти
+      </ion-button>
+      <ion-button expand="block" fill="outline" (click)="onRegister()">
+        Зареєструватися
+      </ion-button>
+    </ion-list>
+  </ion-form>
+</ion-content>

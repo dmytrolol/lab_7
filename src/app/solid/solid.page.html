@@ -72,7 +72,7 @@
       <ion-card-title> Запропонувати ТЗ </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-button (click)="openAddForm()">Додати</ion-button>
+      <ion-button (click)="openAddForm()">Додати ТЗ</ion-button>
       <app-add-vehicle
         *ngIf="showAddVehicleModal"
         (vehicleAdd)="addVehicle($event)"
@@ -80,4 +80,6 @@
       </app-add-vehicle>
     </ion-card-content>
   </ion-card>
+
+  <ion-button (click)="logout()">Вийти</ion-button>
 </ion-content>

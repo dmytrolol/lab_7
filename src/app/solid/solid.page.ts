@@ -10,6 +10,9 @@ import { EditVehicleComponent } from '../forms/edit-vehicle/edit-vehicle.compone
 import { ConfigService } from './services/config.service';
 import { vehicleType, VehicleType } from './classes/vehicle-types';
 
+import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
+
 @Component({
   selector: 'app-solid',
   templateUrl: './solid.page.html',
@@ -37,22 +40,36 @@ export class SolidPage implements OnInit {
 
   constructor(
     public vehicleService: VehicleReadService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   async ngOnInit() {
+    const user = this.authService.getCurrentUser();
+    if (!user) {
+      this.router.navigateByUrl('/login');
+      return;
+    }
     await this.vehicleService.load();
     this.vehicles = this.vehicleService.vehicles;
-    this.applyFilters(); // Застосовуємо фільтри після завантаження
+    this.applyFilters();
+  }
+  logout() {
+    this.authService.logout().then(() => {
+      this.router.navigateByUrl('/login');
+    });
   }
 
   openAddForm() {
     this.showAddVehicleModal = !this.showAddVehicleModal;
   }
 
-  addVehicle(vehicle: Vehicle) {
+  async addVehicle(vehicle: Vehicle) {
     console.log('Метод addVehicle() додав:', vehicle);
-    this.vehicleService.addVehicle(vehicle);
+
+    await this.vehicleService.addVehicle(vehicle);
+    this.vehicles = this.vehicleService.vehicles;
     this.showAddVehicleModal = false;
     this.applyFilters();
   }
@@ -62,13 +79,12 @@ export class SolidPage implements OnInit {
     this.showEditVehicleModal = !this.showEditVehicleModal;
   }
 
-  editVehicle($event: any, i: number) {
-    // Оновлюємо ТЗ, перевіряючи ID
+  async editVehicle($event: any, i: number) {
     const existingVehicleIndex = this.vehicles.findIndex(
       (v) => v.getID() === $event.id
     );
     if (existingVehicleIndex !== -1) {
-      this.vehicles[existingVehicleIndex] = $event;
+      await this.vehicleService.editVehicle($event);
       console.log('Метод editVehicle() змінив ТЗ:', $event);
     } else {
       console.log('ТЗ не знайдено для оновлення');
@@ -77,9 +93,11 @@ export class SolidPage implements OnInit {
     this.applyFilters();
   }
 
-  removeVehicle(vehicle: Vehicle) {
+  async removeVehicle(vehicle: Vehicle) {
     console.log('Метод removeVehicle() видалив:', vehicle);
-    this.vehicleService.removeVehicle(vehicle);
+
+    await this.vehicleService.removeVehicle(vehicle);
+    this.vehicles = this.vehicleService.vehicles;
     this.applyFilters();
   }
 
@@ -91,12 +109,11 @@ export class SolidPage implements OnInit {
   }
 
   onChangePriceRange() {
-    this.applyFilters(); // Зміна діапазону ціни викликає фільтрацію
+    this.applyFilters();
   }
 
   applyFilters() {
     this.filteredVehicles = this.vehicles.filter((vehicle) => {
-      // Фільтрація за типом та ціною
       return (
         vehicle.getType() === this.selectedType &&
         vehicle.getPrice() <= this.selectedPriceRange

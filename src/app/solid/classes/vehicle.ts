@@ -1,14 +1,14 @@
 import { IVehicle } from '../interfaces/vehicle.interfaces';
 
 export abstract class Vehicle implements IVehicle {
-  private id: number;
+  private id: string;
   private price: number;
   private brand: string;
   private model: string;
   private year: number;
 
   constructor(
-    id: number,
+    id: string,
     price: number,
     brand: string,
     model: string,
@@ -20,7 +20,7 @@ export abstract class Vehicle implements IVehicle {
     this.model = model;
     this.year = year;
   }
-  getID(): number {
+  getID(): string {
     return this.id;
   }
   getPrice(): number {
@@ -37,5 +37,8 @@ export abstract class Vehicle implements IVehicle {
   }
   getType(): string {
     return 'Транспортний засіб';
+  }
+  setID(id: string): void {
+    this.id = id;
   }
 }

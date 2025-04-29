@@ -4,7 +4,7 @@ describe('Truck', () => {
   let truck: Truck;
 
   beforeEach(() => {
-    truck = new Truck(1, 50000, 'Volvo', 'FH16', 2022);
+    truck = new Truck('1', 50000, 'Volvo', 'FH16', 2022);
   });
 
   it('should create an instance', () => {
@@ -17,7 +17,7 @@ describe('Truck', () => {
   });
 
   it('should return correct ID', () => {
-    expect(truck.getID()).toBe(1);
+    expect(truck.getID()).toBe('1');
   });
 
   it('should return correct brand', () => {
