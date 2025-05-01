@@ -1,0 +1,79 @@
+<ion-card-header>
+  <ion-card-title>Порівняння транспортних засобів</ion-card-title>
+</ion-card-header>
+<ion-card-content>
+  <!-- Вибір типу ТЗ -->
+  <ion-item>
+    <ion-label>Тип ТЗ</ion-label>
+    <ion-select [(ngModel)]="selectedType" (ionChange)="onTypeChange()">
+      <ion-select-option *ngFor="let type of vehicleTypes" [value]="type">
+        {{ type }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Вибір ТЗ 1 -->
+  <ion-item *ngIf="selectedType">
+    <ion-label>Перший ТЗ</ion-label>
+    <ion-select [(ngModel)]="selected1">
+      <ion-select-option *ngFor="let v of filteredVehicles" [value]="v">
+        {{ v.getBrand() }} {{ v.getModel() }} ({{ v.getYear() }})
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Вибір ТЗ 2 -->
+  <ion-item *ngIf="selectedType">
+    <ion-label>Другий ТЗ</ion-label>
+    <ion-select [(ngModel)]="selected2">
+      <ion-select-option *ngFor="let v of filteredVehicles" [value]="v">
+        {{ v.getBrand() }} {{ v.getModel() }} ({{ v.getYear() }})
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div *ngIf="selected1 && selected2">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card-title>
+            {{ selected1.getBrand() }} {{ selected1.getModel() }}
+            {{ selected1.getYear() }}
+          </ion-card-title>
+          <ion-card-subtitle>{{ selected1.getType() }}</ion-card-subtitle>
+        </ion-col>
+        <ion-col>
+          <ion-card-title>
+            {{ selected2.getBrand() }} {{ selected2.getModel() }}
+            {{ selected2.getYear() }}
+          </ion-card-title>
+          <ion-card-subtitle>{{ selected2.getType() }}</ion-card-subtitle>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card-title>
+            Витрата: {{ selected1.getType() | fuelEfficiency }}
+          </ion-card-title></ion-col
+        >
+        <ion-col>
+          <ion-card-title>
+            Витрата: {{ selected2.getType() | fuelEfficiency }}
+          </ion-card-title></ion-col
+        >
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card-title
+            >Ціна: {{ selected1.getPrice() }} $
+          </ion-card-title></ion-col
+        >
+        <ion-col>
+          <ion-card-title
+            >Ціна: {{ selected2.getPrice() }} $
+          </ion-card-title></ion-col
+        >
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-card-content>

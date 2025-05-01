@@ -13,6 +13,9 @@ import { vehicleType, VehicleType } from './classes/vehicle-types';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
+import { CompareVehiclesComponent } from '../compare-vehicles/compare-vehicles.component';
+import { SortByPricePipe } from '../pipe/sort-by-price.pipe';
+
 @Component({
   selector: 'app-solid',
   templateUrl: './solid.page.html',
@@ -25,6 +28,8 @@ import { AuthService } from './services/auth.service';
     IonicModule,
     AddVehicleComponent,
     EditVehicleComponent,
+    CompareVehiclesComponent,
+    SortByPricePipe,
   ],
 })
 export class SolidPage implements OnInit {
@@ -55,6 +60,7 @@ export class SolidPage implements OnInit {
     this.vehicles = this.vehicleService.vehicles;
     this.applyFilters();
   }
+
   logout() {
     this.authService.logout().then(() => {
       this.router.navigateByUrl('/login');
@@ -119,5 +125,14 @@ export class SolidPage implements OnInit {
         vehicle.getPrice() <= this.selectedPriceRange
       );
     });
+  }
+
+  showComparison = false;
+
+  sortDirection: 'asc' | 'desc' = 'asc';
+
+  sortByPrice() {
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    this.applyFilters();
   }
 }

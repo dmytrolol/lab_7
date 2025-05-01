@@ -45,8 +45,13 @@
     </ion-card-content>
   </ion-card>
 
+  <!-- Кнопка для сортування за ціною -->
+  <ion-button (click)="sortByPrice()">Сортувати за ціною</ion-button>
+
   <!-- Відображення результатів -->
-  <ion-card *ngFor="let vehicle of filteredVehicles; let i = index">
+  <ion-card
+    *ngFor="let vehicle of filteredVehicles | sortByPrice: sortDirection; let i = index"
+  >
     <ion-card-header>
       <ion-card-title>
         {{ vehicle.getBrand() }} {{ vehicle.getModel() }} {{ vehicle.getYear()
@@ -79,6 +84,16 @@
       >
       </app-add-vehicle>
     </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-button (click)="showComparison = !showComparison">
+      Порівняти ТЗ
+    </ion-button>
+    <app-compare-vehicles
+      *ngIf="showComparison"
+      [vehicles]="vehicles"
+    ></app-compare-vehicles>
   </ion-card>
 
   <ion-button (click)="logout()">Вийти</ion-button>
